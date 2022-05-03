@@ -16,7 +16,7 @@ function formatDate(timestamp) {
 
 
 
-    return "Friday 5:00"
+   
 }
 
 

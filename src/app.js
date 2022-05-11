@@ -15,8 +15,18 @@ function formatDate(timestamp) {
     return `${day} ${hours}:${minutes}`
   
 }
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "f3dfa8d7baf16dece455736a2124255f";
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiURL);
 
-function displayForecast(){
+  axios.get(apiURL).then(displayForecast);
+
+}
+function displayForecast(response){
+
+  console.log (response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   let days =["thu", "fri", "sat"];
  
@@ -80,6 +90,8 @@ function displayTemperature(response) {
     iconElement.setAttribute( "alt", response.data.weather[0].description);
 
     celsiusTemperature = response.data.main.temp;
+
+    getForecast(response.data.coord);
     
  }
 
